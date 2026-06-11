@@ -1,0 +1,57 @@
+{
+  "updated": "2026-06-07",
+  "deployer": "0x4b992F2Fbf714C0fCBb23baC5130Ace48CaD00cd",
+  "destination": {
+    "chain": "Unichain Sepolia",
+    "chainId": 1301,
+    "explorer": "https://sepolia.uniscan.xyz",
+    "poolManager": "0x00B036B58a818B1BC34d502D3fE730Db729e62AC",
+    "callbackProxy": "0x9299472A6399Fd1027ebF067571Eb3e3D7837FC4",
+    "productionHook": {
+      "address": "0x7B01bb0a1fF1b937B836E656C2F4274708f64640",
+      "deployTx": "0xb46a6fc1d8eae964750cf55d78e4f8b97b63468688aa17d79f89c9a457ac68da"
+    },
+    "demoToken": {
+      "address": "0xe5Bdc98BA55C0257782Eab836f49569c31199A25",
+      "deployTx": "0x4bddcd01705fc68b4ed544b0c6565484c60facfdc76362d5fbed92a05b24d3d2"
+    },
+    "demoHook": {
+      "address": "0xC890A568b2BCedF0dBF80b40e0D1D31CBfac0640",
+      "deployTx": "0x1c49a2a451cebcb4854cd4de691fc777509f1a79936689e684977879da51a3b0"
+    }
+  },
+  "reactiveLasna": {
+    "chainId": 5318007,
+    "explorer": "https://lasna.reactscan.net",
+    "systemContract": "0x0000000000000000000000000000000000fffFfF",
+    "productionRsc": {
+      "address": "0x289796af51c6fD3D44f73b5022cC24447055b7EB",
+      "deployTx": "0x4ce6fecd8b5855ce068a2f8dfb514490bd3d604c7498989fa951be987a295f8d",
+      "subscriptionTx": "0x5939b41da73f3006fe456257f670c9854a81a22ee954824c3803bed4f2808029"
+    },
+    "demoRsc": {
+      "address": "0xA05b0fFc30482bF4923A6C0BdC321edB0179B395",
+      "deployTx": "0xf5cb181b95df07b6b366e3cd6e75722382e7ab2c15855ab32c92d7e34db53546",
+      "subscriptionTx": "0x4eace3f266961b15f5f4caf68db6a038d99cd5aeaccf28a9037393662acf48d1",
+      "rvmId": "0x4b992f2fbf714c0fcbb23bac5130ace48cad00cd"
+    }
+  },
+  "e2eProof": {
+    "callbackDebtFundTx": "0x9f3ef74a0a14e16f3479a73ebf2c074cd0cbc52045d21dee566ea7e7303e25e3",
+    "callbackDebtCoverTx": "0xa9e402507bfabe3515777e645794527c2f95efd8644039d861fbb821c532907f",
+    "mintTx": "0xbf595451dfe05ec7f900d22a508729fe01e430024da70939eecafc17851461b6",
+    "approveTx": "0x5f0f3985a2d4c656af2ff2e3e5a3ff5195b4b47df33a3ef03f6ff6483689e57d",
+    "enrollTx": "0x27162d551c8cbc52bb75dca21dc97140cc2970beaa94a8d9ef0db7ac5448522a",
+    "fundReserveTx": "0xe96009df42ffa2d7be6b76d6566be04fa68e7cb73b8a9cc232b9060c89156a5f",
+    "originPriceDeviationTx": "0x293b633d28ccb24b9c2023a9b340bf268a7dccb9d3e07171efbd41975a887bd5",
+    "lasnaRvmProcessingTx": "0xc179bcf651729d21503dd9fc90b5a009af91f64e1071dc31a844d4ca693a0290",
+    "destinationInsurancePaidTx": "0x908356dece4bf8c9daeefc95b41dd571c7cd0d02c82e48d816462e89bdf19c4b",
+    "preflight": {
+      "callbackProxyMatched": true,
+      "rvmSenderMatched": true,
+      "activeRnkFilterMatched": true,
+      "callbackDebtCovered": true
+    },
+    "payoutObserved": true
+  }
+}
