@@ -1,0 +1,12 @@
+.env
+out/
+cache/
+broadcast/
+node_modules/
+frontend/.next/
+frontend/out/
+context/
+logs/*.json
+logs/*.log
+deployments/*.local.json
+.DS_Store
