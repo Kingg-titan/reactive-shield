@@ -11,6 +11,9 @@
 ![UHI9: Hookathon 2026](https://img.shields.io/badge/UHI9-Hookathon%202026-blueviolet)
 ![Aave v3](https://img.shields.io/badge/Aave%20v3-adapter-2ebac6)
 
+**Presentation:** https://gamma.app/docs/ReactiveShield-fan030zjvb5r3is  
+**Demo Video:** https://youtu.be/Jx0XBTrB-zw
+
 ---
 
 ReactiveShield is a Uniswap v4 impermanent-loss insurance hook for LPs who want explicit downside protection instead of indirect fee smoothing or off-chain hedging. LPs opt into coverage, pay a premium, and receive reserve-backed payouts when price movement pushes impermanent loss above their selected deductible. Reactive Smart Contracts on Reactive Network monitor hook events and trigger destination callbacks without keepers, bots, multisigs, or manual claims. Built for the UHI9 Hookathon — Impermanent Loss & Yield Systems.
