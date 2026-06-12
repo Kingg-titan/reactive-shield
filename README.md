@@ -28,8 +28,6 @@ ReactiveShield is a Uniswap v4 impermanent-loss insurance hook for LPs who want 
 - [Demo Run](#demo-run)
 - [Test Coverage](#test-coverage)
 - [Local Development](#local-development)
-- [Security Considerations](#security-considerations)
-- [Known Limitations & Future Work](#known-limitations--future-work)
 - [Contributing & License](#contributing--license)
 - [Acknowledgements](#acknowledgements)
 
@@ -623,40 +621,6 @@ forge script script/DeployReactiveShieldRSC.s.sol --rpc-url $REACTIVE_LASNA_RPC_
 ```bash
 ./script/e2e-unichain-lasna-demo.sh
 ```
-
-## Security Considerations
-
-1. **Reactive callback access control** — `settlePoolFromReactive` and `triggerPayoutFromReactive` require `msg.sender == callbackProxy` and `sender == reactiveSender`.
-2. **Threshold validation** — LP thresholds must be between `MIN_THRESHOLD_BPS` and `MAX_THRESHOLD_BPS`, preventing nonsensical insurance parameters.
-3. **Premium and coverage caps** — `maxCoverageAmount = premiumPaid * MAX_COVERAGE_MULTIPLIER`, bounding reserve exposure per LP.
-4. **Epoch-gated payouts** — Claims are blocked until `depositTimestamp + epochLength`, reducing deposit-claim-withdraw abuse.
-5. **Double-claim prevention** — `lastClaimEpoch` prevents repeated payouts for the same LP within one epoch.
-6. **Reserve circuit breaker** — `DEPLETED` state pauses payouts and `STRESSED` state halves payouts, so the hook fails closed when reserves are weak.
-7. **Overflow and underflow protection** — Solidity `0.8.26` checked arithmetic and Uniswap `FullMath.mulDiv` are used for fixed-point calculations.
-8. **Reentrancy posture** — Payout state is updated before token transfer, and Uniswap v4 PoolManager controls hook callback entry during pool operations.
-9. **RSC downtime behavior** — If Reactive Network is delayed, automatic payout is delayed but the hook keeps permissionless `triggerSettlement` as a recovery/demo path. ⚠️ Acknowledged — acceptable tradeoff because settlement remains recoverable and does not compromise reserve accounting.
-10. **MEV surface** — A trader can move price before a settlement event, but coverage is epoch-gated, capped, and reserve-limited. ⚠️ Acknowledged — acceptable tradeoff because claim size is bounded and price manipulation is economically costly.
-11. **Aave adapter risk** — The adapter boundary introduces external protocol risk if enabled with live reserve funds. ⚠️ Acknowledged — acceptable tradeoff because the latest live demo does not depend on Aave deposits, and future deployments can cap reserve allocation.
-
-## Known Limitations & Future Work
-
-### Current Limitations
-
-- ⚠️ The live demo uses `ReactiveShieldDemoHook.emitDemoPriceDeviation` for deterministic event generation rather than organic pool volume.
-- ⚠️ The production hook models position value in token1 terms and does not yet implement tick-adjusted concentrated-liquidity IL amplification.
-- ⚠️ RSC settlement currently queues pool-level settlement for each price event rather than batching LP subsets on ReactVM.
-- ⚠️ Aave reserve yield support is implemented through `AaveV3Adapter`, but the latest live proof does not deploy or fund an Aave adapter on Unichain Sepolia.
-- ⚠️ Coverage is not literally `100%` for line and branch metrics; the verified run is `99.25%` line and `100%` function coverage under `--ir-minimum`.
-- ⚠️ Callback debt must be monitored operationally; the demo script handles this by checking `callbackDebt()` and calling `coverCallbackDebt()` before the origin event.
-
-### Future Work
-
-- **Tick-adjusted IL model** — Add concentrated-liquidity-aware IL computation that accounts for range width, current tick, and out-of-range inventory.
-- **Per-pool reserve policy UI** — Let pool deployers tune reserve targets, premium rates, and fee diversion thresholds without redeploying the hook.
-- **Aave live reserve allocation** — Deploy the Aave adapter on supported networks, cap reserve allocation, and prove deposit, harvest, and withdrawal in fork tests and live demos.
-- **Batched RSC settlement** — Extend ReactVM state to paginate insured LPs for high-participation pools while preserving deterministic callback proofs.
-- **Cross-pool mutual reserve** — Pool insurance reserves across correlated assets to improve capital efficiency and reduce depleted-state frequency.
-- **Frontend claim and risk dashboard** — Show LP entry price, deductible, max coverage, reserve health, callback debt status, and last Reactive settlement tx.
 
 ## Contributing & License
 
